@@ -1,0 +1,9 @@
+version: "1"
+rules:
+  - base: main
+    upstream: TheCommsChannel:main
+    mergeMethod: merge
+    assignees:
+      - northportio
+    reviewers:
+      - northportio
