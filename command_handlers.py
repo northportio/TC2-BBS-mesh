@@ -32,7 +32,10 @@ def build_menu(items, menu_name):
         if item.strip() == 'Q':
             menu_str += "[Q]uick Commands\n"
         elif item.strip() == 'B':
-            menu_str += "[B]BS\n"
+            if menu_name == "📰BBS Menu📰":
+                menu_str += "[B]ulletins\n"
+            else:
+                menu_str += "[B]BS\n"
         elif item.strip() == 'U':
             menu_str += "[U]tilities\n"
         elif item.strip() == 'X':
@@ -50,7 +53,6 @@ def build_menu(items, menu_name):
         elif item.strip() == 'W':
             menu_str += "[W]all of Shame\n"
     return menu_str
-
 
 def handle_help_command(sender_id, interface, menu_name=None):
     if menu_name:
@@ -522,9 +524,6 @@ def handle_post_bulletin_command(sender_id, message, interface, bbs_nodes):
         unique_id = add_bulletin(board_name, sender_short_name, subject, content, bbs_nodes, interface)
         send_message(f"Your bulletin '{subject}' has been posted to {board_name}.", sender_id, interface)
 
-        if board_name.lower() == "urgent":
-            notification_message = f"💥NEW URGENT BULLETIN💥\nFrom: {sender_short_name}\nTitle: {subject}"
-            send_message(notification_message, BROADCAST_NUM, interface)
 
     except Exception as e:
         logging.error(f"Error processing post bulletin command: {e}")
